@@ -2,10 +2,12 @@ package com.jlabirinto;
 
 import java.util.ArrayList;
 
+import javax.swing.text.AbstractDocument.BranchElement;
+
 public class Labirinto {
 	
-	private Integer tamanhoDoLado;
-	private ArrayList<No> caminhoLivre = new ArrayList<No>();
+	private Double tamanhoDoLado;
+	private Boolean[][] labirintoPrincipal;
 	private No origem;
 	private No Alvo;
 	
@@ -16,7 +18,7 @@ public class Labirinto {
 
 
 
-	private void setTamanhoDoLado(Integer d) {
+	private void setTamanhoDoLado(Double d) {
 		this.tamanhoDoLado = d;
 	}
 
@@ -46,18 +48,24 @@ public class Labirinto {
 
 
 
-	public Labirinto(Boolean tamanho) {
+	public Labirinto(Integer tamanho) {
 		
 		Integer numeroDeQuadrados;
 		
-		if (tamanho) {
-			numeroDeQuadrados = 10;
-			
-		} else {
-			numeroDeQuadrados = 100;
+		switch (tamanho) {
+		case 1:
+			numeroDeQuadrados = 9;
+			break;
+		case 2:
+			numeroDeQuadrados = 49;
+			break;
+		default:
+			numeroDeQuadrados = 9;
+			break;
 		}
+
 		
-		this.setTamanhoDoLado( 500 / numeroDeQuadrados);
+		this.setTamanhoDoLado( 500.00 / numeroDeQuadrados);
 		this.setAlvo(new No(numeroDeQuadrados, 1));
 		this.setOrigem(new No( 1, numeroDeQuadrados - 1));
 			
