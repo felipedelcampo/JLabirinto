@@ -49,7 +49,7 @@ public class NoAStar extends No {
 	}
 
     //	Cria o no e calcula as distâncias
-	public NoAStar(Integer posicaoX, Integer posicaoY, NoAStar origem, NoAStar alvo, NoAStar pai) {
+	public NoAStar(Integer posicaoX, Integer posicaoY, No origem, No alvo, No pai) {
 		
 		super(posicaoX, posicaoY);
 		// Distância da origem
@@ -63,8 +63,14 @@ public class NoAStar extends No {
 		
 	}
 	
+	public Boolean mesmaPosicao(No no) {
+		
+		return (this.getPosicaoX() == no.getPosicaoX() && this.getPosicaoY() == no.getPosicaoY());
+		
+	}
 	
-	private Integer calculaDistancia(NoAStar alvo) {
+	
+	private Integer calculaDistancia(No alvo) {
 		
 		Integer distanciaX, distanciaY;
 		distanciaX = Math.abs(this.getPosicaoX() - alvo.getPosicaoX());
