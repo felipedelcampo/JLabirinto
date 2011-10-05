@@ -34,6 +34,20 @@ public class No {
 	public void setPosicaoY(Integer posicaoY) {
 		this.posicaoY = posicaoY;
 	}
+	//Retorna a posicacao do no em relacao a outro no 1 Acima, 2 Abaixo, 3 Direita, 4 Esquerda	
+	public Integer verificaPosicaoRelativa(No noAnterior){
+		
+		if (this.getPosicaoX() > noAnterior.getPosicaoX()){
+			return 1;
+		} else if (this.getPosicaoX() < noAnterior.getPosicaoX()){
+			return 2;
+		} else if (this.getPosicaoY() > noAnterior.getPosicaoY()) {
+			return 3;
+		} else if (this.getPosicaoY() < noAnterior.getPosicaoY()) {
+			return 4;
+		} else return 0;
+		
+	}
 
 	public No(Integer posicaoX, Integer posicaoY) {
 		

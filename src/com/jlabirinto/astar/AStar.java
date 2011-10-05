@@ -37,7 +37,7 @@ public class AStar {
 		ArrayList<No> arredores = new ArrayList<No>();
 		No noTemporario = new No(noMenorCustoF.getPosicaoX(),
 				noMenorCustoF.getPosicaoY());
-		arredores = labirinto.getArredoresTrue(noTemporario);
+		arredores = labirinto.getArredores(noTemporario, true, 0);
 		if (!arredores.isEmpty()) {
 			for (No noLista : arredores) {
 
