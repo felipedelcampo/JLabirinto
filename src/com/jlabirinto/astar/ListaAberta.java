@@ -3,17 +3,15 @@ package com.jlabirinto.astar;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.jlabirinto.No;
-
 public class ListaAberta {
 
 	private ArrayList<NoAStar> listaAberta = new ArrayList<NoAStar>();
 
-	public void setOrigem(No origem) {
-
-		listaAberta.add((NoAStar) origem);
-
-	}
+	// public void setOrigem(No origem) {
+	//
+	// listaAberta.add((NoAStar) origem);
+	//
+	// }
 
 	public NoAStar pegaMenorCustoF() {
 
@@ -26,6 +24,12 @@ public class ListaAberta {
 
 		listaAberta.add(novoNoAstar);
 		Collections.sort(listaAberta, new ComparadorNoAstar());
+
+	}
+
+	public ArrayList<NoAStar> getListaAberta() {
+
+		return this.listaAberta;
 
 	}
 

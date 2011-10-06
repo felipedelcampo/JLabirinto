@@ -6,17 +6,17 @@ import com.jlabirinto.dfs.DFS;
 
 public class Labirinto {
 
-	private Double tamanhoDoLado;
+	private Integer tamanhoDoLado;
 	private Integer numeroDeQuadrados;
 	private Boolean[][] labirintoPrincipal;
 	private No origem;
 	private No Alvo;
 
-	public Double getTamanhoDoLado() {
+	public Integer getTamanhoDoLado() {
 		return tamanhoDoLado;
 	}
 
-	private void setTamanhoDoLado(Double d) {
+	private void setTamanhoDoLado(Integer d) {
 		this.tamanhoDoLado = d;
 	}
 
@@ -58,25 +58,25 @@ public class Labirinto {
 			break;
 		}
 
-		this.setTamanhoDoLado(500.00 / this.numeroDeQuadrados);
-		this.setAlvo(new No(this.numeroDeQuadrados - 1,
-				this.numeroDeQuadrados - 1));
+		this.setTamanhoDoLado(500 / this.numeroDeQuadrados);
+		this.setAlvo(new No(this.numeroDeQuadrados - 2,
+				this.numeroDeQuadrados - 2));
 		this.setOrigem(new No(1, 1));
 		Integer j = this.numeroDeQuadrados;
 		Integer i = this.numeroDeQuadrados;
 		this.labirintoPrincipal = new Boolean[i][j];
 		for (i = 0; i < this.numeroDeQuadrados; i++) {
 			for (j = 0; j < this.numeroDeQuadrados; j++) {
-				if (i == 0 || i == this.numeroDeQuadrados || j == 0
-						|| j == this.numeroDeQuadrados) {
-					this.labirintoPrincipal[i][j] = false;
-				} else {
-					this.labirintoPrincipal[i][j] = true;
-				}
+				
+				this.labirintoPrincipal[i][j] = false;
+
 			}
 		}
+		this.labirintoPrincipal[1][1] = true;
+		this.labirintoPrincipal[this.numeroDeQuadrados - 1][this.numeroDeQuadrados - 2] = true;
 		DFS dfs = new DFS(this);
 		this.labirintoPrincipal = dfs.getLabirintoDFS();
+		this.labirintoPrincipal[0][1] = true;
 
 	}
 
@@ -85,22 +85,27 @@ public class Labirinto {
 		Integer posicaoX = noAtual.getPosicaoX();
 		Integer posicaoY = noAtual.getPosicaoY();
 		ArrayList<No> arredores = new ArrayList<No>();
-		if (labirintoPrincipal[posicaoX + 1 + offset][posicaoY] == tipo
-				&& (posicaoX + 1 + offset) > 0) {
-			arredores.add(new No(posicaoX + 1, posicaoY));
+		if ((posicaoX + 1 + offset) < this.numeroDeQuadrados) {
+			if (labirintoPrincipal[posicaoX + 1 + offset][posicaoY] == tipo) {
+				arredores.add(new No(posicaoX + 1 + offset, posicaoY));
+			}
 		}
-		if (labirintoPrincipal[posicaoX - 1 - offset][posicaoY] == tipo
-				&& (posicaoX - 1 - offset) < this.numeroDeQuadrados) {
-			arredores.add(new No(posicaoX - 1, posicaoY));
+		if ((posicaoX - 1 - offset) > 0) {
+			if (labirintoPrincipal[posicaoX - 1 - offset][posicaoY] == tipo) {
+				arredores.add(new No(posicaoX - 1 - offset, posicaoY));
+			}
 		}
-		if (labirintoPrincipal[posicaoX][posicaoY + 1 + offset] == tipo
-				&& (posicaoY + 1 + offset) > 0) {
-			arredores.add(new No(posicaoX, posicaoY + 1));
+		if ((posicaoY + 1 + offset) < this.numeroDeQuadrados) {
+			if (labirintoPrincipal[posicaoX][posicaoY + 1 + offset] == tipo) {
+				arredores.add(new No(posicaoX, posicaoY + 1 + offset));
+			}
 		}
-		if (labirintoPrincipal[posicaoX][posicaoY - 1 - offset] == tipo
-				&& (posicaoY - 1 - offset) < this.numeroDeQuadrados) {
-			arredores.add(new No(posicaoX, posicaoY - 1));
+		if ((posicaoY - 1 - offset) > 0) {
+			if (labirintoPrincipal[posicaoX][posicaoY - 1 - offset] == tipo) {
+				arredores.add(new No(posicaoX, posicaoY - 1 - offset));
+			}
 		}
+
 		return arredores;
 
 	}

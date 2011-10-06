@@ -18,7 +18,7 @@ public class AStar {
 	public AStar(Labirinto labirinto) {
 
 		No origem = labirinto.getOrigem();
-		this.listaAberta.setOrigem(origem);
+//		this.listaAberta.setOrigem(origem);
 		NoAStar primeiroNo = new NoAStar(origem.getPosicaoX(),
 				origem.getPosicaoY(), origem, labirinto.getAlvo(), origem);
 		this.listaAberta.adicionaListaAberta(primeiroNo);
@@ -57,9 +57,9 @@ public class AStar {
 		
 	}
 	
-	public ListaAberta getListaAberta() {
+	public ArrayList<NoAStar> getListaAberta() {
 		
-		return this.listaAberta;
+		return this.listaAberta.getListaAberta();
 		
 	}
 

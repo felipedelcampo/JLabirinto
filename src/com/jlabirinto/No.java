@@ -35,15 +35,15 @@ public class No {
 		this.posicaoY = posicaoY;
 	}
 	//Retorna a posicacao do no em relacao a outro no 1 Acima, 2 Abaixo, 3 Direita, 4 Esquerda	
-	public Integer verificaPosicaoRelativa(No noAnterior){
+	public Integer verificaPosicaoRelativa(No no){
 		
-		if (this.getPosicaoX() > noAnterior.getPosicaoX()){
+		if (this.getPosicaoX() < no.getPosicaoX()){
 			return 1;
-		} else if (this.getPosicaoX() < noAnterior.getPosicaoX()){
+		} else if (this.getPosicaoX() > no.getPosicaoX()){
 			return 2;
-		} else if (this.getPosicaoY() > noAnterior.getPosicaoY()) {
+		} else if (this.getPosicaoY() < no.getPosicaoY()) {
 			return 3;
-		} else if (this.getPosicaoY() < noAnterior.getPosicaoY()) {
+		} else if (this.getPosicaoY() > no.getPosicaoY()) {
 			return 4;
 		} else return 0;
 		

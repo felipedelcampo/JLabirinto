@@ -29,8 +29,7 @@ public class DFS {
 			for (No noLista : arredores) {
 				Integer posicaoX = noLista.getPosicaoX();
 				Integer posicaoY = noLista.getPosicaoY();
-				if (labirintoDFS[posicaoX][posicaoY] == false
-						&& noLista.equals(labirinto.getAlvo())) {
+				if (labirintoDFS[posicaoX][posicaoY] == false) {
 					labirintoDFS[posicaoX][posicaoY] = true;
 					switch (noAtual.verificaPosicaoRelativa(noLista)) {
 					case 1:
@@ -48,7 +47,9 @@ public class DFS {
 					default:
 						break;
 					}
-					retornaLabirintoDFS(labirinto, noLista);
+					if (!noLista.equals(labirinto.getAlvo())) {
+						retornaLabirintoDFS(labirinto, noLista);
+					}
 				}
 			}
 		}
