@@ -13,14 +13,14 @@ public class NoAStar extends No {
 	private Integer custoF;
 	private Integer custoG;
 	private Integer custoH;
-	private No pai;
+	private NoAStar pai;
 	
 		
-	public No getPai() {
+	public NoAStar getPai() {
 		return pai;
 	}
 
-	private void setPai(No pai) {
+	private void setPai(NoAStar pai) {
 		this.pai = pai;
 	}
 
@@ -49,7 +49,7 @@ public class NoAStar extends No {
 	}
 
     //	Cria o no e calcula as distâncias
-	public NoAStar(Integer posicaoX, Integer posicaoY, No origem, No alvo, No pai) {
+	public NoAStar(Integer posicaoX, Integer posicaoY, No origem, No alvo, NoAStar pai) {
 		
 		super(posicaoX, posicaoY);
 		// Distância da origem

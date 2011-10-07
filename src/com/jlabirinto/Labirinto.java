@@ -48,20 +48,20 @@ public class Labirinto {
 
 		switch (tamanho) {
 		case 1:
-			this.numeroDeQuadrados = 49;
+			this.numeroDeQuadrados = 69;
 			break;
 		case 2:
 			this.numeroDeQuadrados = 99;
 			break;
 		default:
-			this.numeroDeQuadrados = 9;
+			this.numeroDeQuadrados = 29;
 			break;
 		}
 
 		this.setTamanhoDoLado(500 / this.numeroDeQuadrados);
-		this.setAlvo(new No(this.numeroDeQuadrados - 2,
-				this.numeroDeQuadrados - 2));
-		this.setOrigem(new No(1, 1));
+		this.setAlvo(new No(this.numeroDeQuadrados - 1,
+				this.numeroDeQuadrados - (this.numeroDeQuadrados/2)));
+		this.setOrigem(new No(1, this.numeroDeQuadrados/2));
 		Integer j = this.numeroDeQuadrados;
 		Integer i = this.numeroDeQuadrados;
 		this.labirintoPrincipal = new Boolean[i][j];
@@ -72,11 +72,12 @@ public class Labirinto {
 
 			}
 		}
-		this.labirintoPrincipal[1][1] = true;
-		this.labirintoPrincipal[this.numeroDeQuadrados - 1][this.numeroDeQuadrados - 2] = true;
+		this.labirintoPrincipal[1][this.numeroDeQuadrados/2] = true;
+		this.labirintoPrincipal[this.numeroDeQuadrados - 1][this.numeroDeQuadrados - (this.numeroDeQuadrados/2)] = true;
+		this.labirintoPrincipal[this.numeroDeQuadrados - 2][this.numeroDeQuadrados - (this.numeroDeQuadrados/2)] = true;
 		DFS dfs = new DFS(this);
 		this.labirintoPrincipal = dfs.getLabirintoDFS();
-		this.labirintoPrincipal[0][1] = true;
+		this.labirintoPrincipal[0][this.numeroDeQuadrados/2] = true;
 
 	}
 
