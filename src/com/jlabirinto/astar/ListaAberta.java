@@ -1,3 +1,7 @@
+/**
+ * @author felipe
+ * Classe que controla a lista aberta
+ */
 package com.jlabirinto.astar;
 
 import java.util.ArrayList;
@@ -7,12 +11,7 @@ public class ListaAberta {
 
 	private ArrayList<NoAStar> listaAberta = new ArrayList<NoAStar>();
 
-	// public void setOrigem(No origem) {
-	//
-	// listaAberta.add((NoAStar) origem);
-	//
-	// }
-
+	// Retorna o menor custo de F entre os nós contidos na lista aberta
 	public NoAStar pegaMenorCustoF() {
 
 		NoAStar noAstarMenorCustoF = listaAberta.get(0);
@@ -23,6 +22,7 @@ public class ListaAberta {
 	public void adicionaListaAberta(NoAStar novoNoAstar) {
 
 		listaAberta.add(novoNoAstar);
+		//Após adicionar um nó a lista é ordenada pelo custo F
 		Collections.sort(listaAberta, new ComparadorNoAstar());
 
 	}

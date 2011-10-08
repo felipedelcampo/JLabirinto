@@ -1,3 +1,7 @@
+/**
+ * @author felipe
+ * Classe que cra um labirinto
+ */
 package com.jlabirinto;
 
 import java.util.ArrayList;
@@ -46,6 +50,7 @@ public class Labirinto {
 
 	public Labirinto(Integer tamanho) {
 
+		//Seleciona o número de lados do labirinto
 		switch (tamanho) {
 		case 1:
 			this.numeroDeQuadrados = 69;
@@ -65,6 +70,7 @@ public class Labirinto {
 		Integer j = this.numeroDeQuadrados;
 		Integer i = this.numeroDeQuadrados;
 		this.labirintoPrincipal = new Boolean[i][j];
+		//Seta o labirinto inteiro como false
 		for (i = 0; i < this.numeroDeQuadrados; i++) {
 			for (j = 0; j < this.numeroDeQuadrados; j++) {
 				
@@ -72,15 +78,18 @@ public class Labirinto {
 
 			}
 		}
+		// Seta a entrada e a saida como true
 		this.labirintoPrincipal[1][(this.numeroDeQuadrados-1)/2] = true;
 		this.labirintoPrincipal[this.numeroDeQuadrados - 1][this.numeroDeQuadrados - ((this.numeroDeQuadrados-1)/2)] = true;
 		this.labirintoPrincipal[this.numeroDeQuadrados - 2][this.numeroDeQuadrados - ((this.numeroDeQuadrados-1)/2)] = true;
+		// Chama a busca em profundidade para criar o labirinto
 		DFS dfs = new DFS(this);
 		this.labirintoPrincipal = dfs.getLabirintoDFS();
 		this.labirintoPrincipal[0][(this.numeroDeQuadrados-1)/2] = true;
 
 	}
 
+	//Retorna o nó adjacentes true ou false a partir de um offset
 	public ArrayList<No> getArredores(No noAtual, Boolean tipo, Integer offset) {
 
 		Integer posicaoX = noAtual.getPosicaoX();

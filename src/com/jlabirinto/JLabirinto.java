@@ -1,9 +1,12 @@
+/**
+ * @author felipe
+ * Classe principal onde cria os elementos e anima o labirinto
+ */
 package com.jlabirinto;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
@@ -11,6 +14,7 @@ import javax.swing.JPanel;
 
 import com.jlabirinto.astar.AStar;
 import com.jlabirinto.astar.NoAStar;
+
 
 public class JLabirinto {
 
@@ -43,6 +47,7 @@ public class JLabirinto {
 
 		Boolean continua;
 
+		// Loop que controla o desenvolvimento do A*
 		do {
 
 			this.listaAberta = this.astar.getListaAberta();
@@ -56,6 +61,7 @@ public class JLabirinto {
 
 		} while (continua);
 
+		//Habilita o desenho do caminho, apenas após se achar o caminho completo
 		this.desenhaCaminho = true;
 
 	}
@@ -71,7 +77,7 @@ public class JLabirinto {
 	class PainelDeDesenho extends JPanel {
 
 		public void paintComponent(Graphics g) {
-			// metodos de desenho
+			// Desenha o labirinto
 			for (int i = 0; i < labirinto.getNumeroDeQuadrados(); i++) {
 				for (int j = 0; j < labirinto.getNumeroDeQuadrados(); j++) {
 					if (labirintoDesenho[i][j] == true) {
@@ -81,11 +87,13 @@ public class JLabirinto {
 					g.fillRect(i * lado, j * lado, lado, lado);
 				}
 			}
+			//Desenha a origem e o alvo
 			g.setColor(Color.green);
 			g.fillRect(0, lado * (labirinto.getNumeroDeQuadrados() / 2),
 					lado, lado);
 			g.fillRect(lado * (labirinto.getNumeroDeQuadrados()-1), lado
 					* (labirinto.getNumeroDeQuadrados() / 2 + 1), lado, lado);
+			//Desenha a lista fechada
 			g.setColor(Color.red);
 			ArrayList<NoAStar> listaFechadaPaint = new ArrayList<NoAStar>(listaFechada);
 			Iterator<NoAStar> no = listaFechadaPaint.iterator();
@@ -96,6 +104,7 @@ public class JLabirinto {
 						* lado, lado, lado);
 
 			}
+			//Desenha a lista aberta
 			g.setColor(Color.blue);
 			for (NoAStar noLista : listaAberta) {
 
@@ -103,6 +112,7 @@ public class JLabirinto {
 						* lado, lado, lado);
 
 			}
+			//Desenha o caminho quando necessário
 			g.setColor(Color.green);
 			NoAStar noAtual = listaFechada.get(listaFechada.size() - 1);
 			if (desenhaCaminho) {
