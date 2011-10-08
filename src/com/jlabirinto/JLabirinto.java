@@ -3,6 +3,8 @@ package com.jlabirinto;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,9 +36,9 @@ public class JLabirinto {
 		frame.getContentPane().add(painel);
 		frame.setSize(
 				labirinto.getNumeroDeQuadrados() * labirinto.getTamanhoDoLado()
-						+ 100,
+						+ 10,
 				labirinto.getNumeroDeQuadrados() * labirinto.getTamanhoDoLado()
-						+ 100);
+						+ 30);
 		frame.setVisible(true);
 
 		Boolean continua;
@@ -84,15 +86,18 @@ public class JLabirinto {
 					lado, lado);
 			g.fillRect(lado * (labirinto.getNumeroDeQuadrados()-1), lado
 					* (labirinto.getNumeroDeQuadrados() / 2 + 1), lado, lado);
-			g.setColor(Color.blue);
-			for (NoAStar noLista : listaAberta) {
+			g.setColor(Color.red);
+			ArrayList<NoAStar> listaFechadaPaint = new ArrayList<NoAStar>(listaFechada);
+			Iterator<NoAStar> no = listaFechadaPaint.iterator();
+			while(no.hasNext()){
 
-				g.fillRect(noLista.getPosicaoX() * lado, noLista.getPosicaoY()
+				NoAStar noListaFechada = no.next();
+				g.fillRect(noListaFechada.getPosicaoX() * lado, noListaFechada.getPosicaoY()
 						* lado, lado, lado);
 
 			}
-			g.setColor(Color.red);
-			for (NoAStar noLista : listaFechada) {
+			g.setColor(Color.blue);
+			for (NoAStar noLista : listaAberta) {
 
 				g.fillRect(noLista.getPosicaoX() * lado, noLista.getPosicaoY()
 						* lado, lado, lado);
