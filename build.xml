@@ -28,7 +28,7 @@ target compile - target responsável por compilar o projeto separando os arquivo
   
     <target name="compile" depends="init">  
     <echo> Compilando o projeto.</echo>  
-    <javac srcdir="\${src}" destdir="\${build}"/>  
+    <javac srcdir="\${src}" destdir="\${build}" includeantruntime="false"/>  
     </target>  
   
 <!--  
